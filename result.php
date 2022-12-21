@@ -6,7 +6,7 @@ $countUpper = 0; // количество букв верхнего регист�
 $countLow = 0; // количество букв нижнего регистра
 $countMarks = 0; // количество знаков препинания
 $countNumber = 0; // количество цифр
-$countWord = 0; // количество слов
+$countWord; // количество слов
 $countEntry = 0; // количество вхождений
 $list;
 $list2;
@@ -48,31 +48,49 @@ $array4 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
             <div class="h1_container">
                 <h1>Исходный текст</h1>
             </div>
-
+            <table>
             <?php
             if (isset($str)) {
                 if ($str != '') {
                     echo '<textarea readonly disabled cols="50" rows="20">' .$str. '</textarea>';
                     $countSymvol = str_split($str);
-                    echo '<p> Количество символов в тексте (включая пробелы): '.count($countSymvol). '</p>';
+                    echo '<tr>
+                                <td>Количество символов в тексте (включая пробелы): </td>
+                                <td>' .count($countSymvol). '</td>
+                        </tr>';
 
                     $countLetter = preg_replace("/[^a-zA-Zа-яА-Я]/u", "", $str);
-                    echo '<p> Количество букв: '.strlen($countLetter). '</p>';
+                    echo '<tr> 
+                    <td> Количество букв: </td>
+                    <td>'.strlen($countLetter). '</td>
+                    </tr>';
 
                     $countUpper = preg_replace("/[^A-ZА-Я]/u", "", $str);
-                    echo '<p> Количество заглавных букв: '.strlen($countUpper). '</p>';
+                    echo '<tr> 
+                    <td> Количество заглавных букв: </td>
+                    <td>'.strlen($countUpper). '</td>
+                    </tr>';
 
                     $countLow = preg_replace("/[^a-zа-я]/u", "", $str);
-                    echo '<p> Количество строчных букв: '.strlen($countLow). '</p>';
+                    echo '<tr> 
+                    <td> Количество строчных букв: </td>
+                    <td>'.strlen($countLow). '</td>
+                    </tr>';
 
                     $countNumber = preg_replace("/[^0-9]/u", "", $str);
-                    echo '<p> Количество цифр: '.strlen($countNumber). '</p>';
+                    echo '<tr> 
+                    <td> Количество цифр: </td>
+                    <td>'.strlen($countNumber). '</td>
+                    </tr>';
 
-                    $list = preg_replace("/[^a-zA-Zа-яА-Я]/u", ' ', $str);
-                    $countWord = explode(" ",$list);
-                    echo '<p> Количество слов: '.count($countWord). '</p>';
-                    // echo print_r($list);
-                    // echo print_r($countSymvol);
+                    $list = preg_replace('#[0-9 ]*#', '', $str);
+                    //$countWord = explode(" ",$list);
+                    echo '<tr> 
+                    <td> Количество слов: </td>
+                    <td>'.count($countWord). '</td>
+                    </tr>';
+                    echo print_r($list);
+                    // echo print_r($countWord);
 
                     // $list2 = array_values(array_unique($countSymvol));
                     // echo print_r($list2);
@@ -85,29 +103,47 @@ $array4 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
                     //$list2 = sort($countSymvol);
                     // echo print_r($list2);
                     $list2 = array_count_values($countSymvol);
-                    echo 'Кол-во дубликатов: ' . count($list2) . '<br></br>';
+                    // echo 'Кол-во вхождений каждого символа: ' . count($list2) . '<br></br>';
+                    echo '<tr> 
+                    <td> Кол-во вхождений каждого символа: </td>
+                    <td>'. count($list2) . '</td>
+                    </tr>';
+
                     // print_r($list2);
                     foreach ($list2 as $key => $value){
                         if ($key == ' '){
-                            echo '<p>' .$key . ' = ' . $value . ' (Пробел)</p>';
+                            echo '<tr>
+                            <td>' .$key. '(Пробел)</td> 
+                            <td>' .$value. '</td>
+                            </tr>';
                             continue;
                         }
-                        echo '<p>' .$key . ' = ' . $value . '</p>';
+                        echo '<tr>
+                            <td>' .$key. '</td> 
+                            <td>' .$value. '</td>
+                            </tr>';
                     }
 
-                    echo print_r($countWord);
+                    // echo print_r($countWord);
                     $list3 = array_count_values($countWord);
+                    ksort($list3);
                     //echo print_r($list3);
-                    echo 'Кол-во дубликатов: ' . count($list3) . '<br></br>';
+                    echo '<tr> 
+                    <td> Кол-во вхождений слов: </td>
+                    <td>'. count($list3) . '</td>
+                    </tr>';
                     foreach ($list3 as $key => $value){
-                        echo '<p>' .$key . ' = ' . $value . '</p>';
+                        echo '<tr>
+                            <td>' .$key. '</td> 
+                            <td>' .$value. '</td>
+                            </tr>';
                     }
 
                 } else echo '<p> Нет текста для анализа </p>';
 
             }
             ?>
-    
+            </table>
             
             
             
