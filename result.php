@@ -71,7 +71,7 @@ $array4 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
                     $countLow = $countLowEn + $countLowRu;
                     $countUpper = $countUpperEn + $countUpperRu;
                     // echo $countUpper;
-                    echo "</br> " . $keywords2;
+                    // echo "</br> " . $keywords2;
                     // echo ' ' .strlen($keywords2);
                     for ($i = 0; $i < strlen($keywords2); $i+=2){
                         $h = $i + 1;
@@ -102,11 +102,11 @@ $array4 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
                             $k9++; // количество пробелов
                         }
                     }
-                    echo '<p> K: ' . $k5 . '</p>';
-                    echo '<p> K: ' . $k6 . '</p>';     
-                    echo '<p> K: ' . $k7 . '</p>';            
-                    echo '<p> K: ' . $k8 . '</p>'; 
-                    echo '<p> K: ' . $k9 . '</p>'; 
+                    // echo '<p> K: ' . $k5 . '</p>';
+                    // echo '<p> K: ' . $k6 . '</p>';     
+                    // echo '<p> K: ' . $k7 . '</p>';            
+                    // echo '<p> K: ' . $k8 . '</p>'; 
+                    // echo '<p> K: ' . $k9 . '</p>'; 
 
                     echo '<textarea readonly disabled cols="50" rows="20">' .$str. '</textarea>';
                     $countSymvol = str_split($str);
